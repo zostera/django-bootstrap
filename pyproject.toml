@@ -2,11 +2,11 @@
 name = "django-bootstrap"
 version = "1.0.0-alpha.0"
 description = "Bootstrap for Django"
+homepage = "https://github.com/zostera/django-bootstrap"
+repository = "https://github.com/zostera-django-bootstrap"
 authors = ["Dylan Verheul <dylan@zostera.nl>"]
 license = "BSD-3-Clause"
 readme = "README.md"
-homepage = "https://github.com/zostera/django-bootstrap"
-repository = "https://github.com/zostera-django-bootstrap"
 keywords = ["django", "bootstrap"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -24,8 +24,8 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-django = "^3.0.4"
+python = "^3.6"
+django = "^2.2 || ^3.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
