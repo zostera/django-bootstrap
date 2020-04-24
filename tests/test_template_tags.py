@@ -15,3 +15,6 @@ class TemplateTagsTest(TestCase):
 
     def test_empty_template(self):
         self.assertEqual(render_template(""), "")
+
+    def test_non_empty_template(self):
+        self.assertEqual(render_template("And so, it begins"), "And so, it begins")
