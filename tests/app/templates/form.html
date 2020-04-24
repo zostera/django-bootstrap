@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap %}
+
+{% block title %}form{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="post">
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-success">
+        </form>
+    </div>
+{% endblock %}

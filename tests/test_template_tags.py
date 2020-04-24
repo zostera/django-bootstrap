@@ -1,7 +1,7 @@
 from django.template import Context, Template
 from django.test import TestCase
 
-TEMPLATE_BASE = ""
+TEMPLATE_BASE = "{% load django_bootstrap %}"
 
 
 def render_template(content, **context_args):
@@ -10,7 +10,7 @@ def render_template(content, **context_args):
     return template.render(Context(context_args))
 
 
-class TemplateTagsTest(TestCase):
+class TemplateTagsTestCase(TestCase):
     """Test template tags."""
 
     def test_empty_template(self):

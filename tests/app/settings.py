@@ -1,4 +1,10 @@
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 SECRET_KEY = "Thanks for using django-bootstrap!"
+
+DEBUG = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
 
@@ -28,6 +34,7 @@ STATIC_URL = "/static/"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

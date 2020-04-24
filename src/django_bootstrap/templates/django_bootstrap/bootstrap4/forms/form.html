@@ -1,0 +1,9 @@
+{% load django_bootstrap %}
+
+{% if form.non_field_errors %}
+    {% include "django_bootstrap/bootstrap4/forms/non_field_errors.html" with form=form only %}
+{% endif %}
+
+{% for field in form %}
+    {% bootstrap_field field %}
+{% endfor %}
