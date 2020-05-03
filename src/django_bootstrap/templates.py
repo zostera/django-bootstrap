@@ -142,7 +142,7 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         context["show_label"] = self.kwargs.get("show_label", True)
         context["form_group_class"] = self.kwargs.get("form_group_class", "form-group")
         context["addon_before"] = self.kwargs.get("addon_before", "")
-        context["addon_after"] = self.kwargs.get("addon_before", "")
+        context["addon_after"] = self.kwargs.get("addon_after", "")
         return context
 
     def render(self):
