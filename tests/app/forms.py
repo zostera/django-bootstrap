@@ -24,6 +24,10 @@ class DemoForm(forms.Form):
         label="Date",
         widget=forms.SelectDateWidget,
     )
+    comments = forms.CharField(
+        label="Comments",
+        widget=forms.Textarea,
+    )
 
     def clean(self):
         result = super().clean()
