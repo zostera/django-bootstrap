@@ -82,6 +82,35 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         self.field = field
         super().__init__(**kwargs)
 
+    def patch_widget_context(self, widget_context):
+        # TODO: There must be a better way to do this
+
+        def replace_django_template_path(template_name):
+            return template_name.replace("django/", self.get_template_dir(), 1) if template_name else ""
+
+        optgroups = widget_context.get("optgroups")
+        if optgroups:
+            patched_optgroups = []
+            for optgroup in optgroups:
+                name = optgroup[0]
+                options = optgroup[1]
+                index = optgroup[2]
+                patched_options = []
+                for option in options:
+                    template_name = option.get("template_name", "")
+                    option["bootstrap_template_name"] = replace_django_template_path(template_name)
+                    patched_options.append(option)
+                patched_optgroups.append((name, options, index))
+            widget_context["optgroups"] = patched_optgroups
+
+        template_name = widget_context.get("template_name", "")
+        widget_context["bootstrap_template_name"] = replace_django_template_path(template_name)
+
+        if "subwidgets" in widget_context:
+            widget_context['subwidgets'] = [self.patch_widget_context(subwidget) for subwidget in widget_context['subwidgets']]
+
+        return widget_context
+
     def get_widget_context(self, only_initial=False):
         """Return widget context."""
         field = self.field
@@ -97,28 +126,11 @@ class BootstrapFieldTemplate(BootstrapTemplate):
             name=field.html_initial_name if only_initial else field.html_name, value=field.value(), attrs=attrs
         ).get("widget", {})
 
-        # TODO: There must be a better way to do this
-        optgroups = widget_context.get("optgroups")
-        if optgroups:
-            patched_optgroups = []
-            for optgroup in optgroups:
-                name = optgroup[0]
-                options = optgroup[1]
-                index = optgroup[2]
-                patched_options = []
-                for option in options:
-                    template_name = option.get("template_name", "")
-                    option["bootstrap_template_name"] = template_name.replace("django/", self.get_template_dir(), 1)
-                    patched_options.append(option)
-                patched_optgroups.append((name, options, index))
-            widget_context["optgroups"] = patched_optgroups
+        widget_context = self.patch_widget_context(widget_context)
 
         widget_context["attrs"]["class"] = merge_css_classes(
             widget_context["attrs"].get("class", ""), self.kwargs.get("extra_classes", ""), "form-control"
         )
-
-        template_name = widget_context.get("template_name", "")
-        widget_context["bootstrap_template_name"] = template_name.replace("django/", self.get_template_dir(), 1)
 
         return widget_context
 

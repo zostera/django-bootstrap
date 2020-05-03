@@ -1,0 +1,7 @@
+<div class="form-row">
+    {% for widget in widget.subwidgets %}
+        <div class="col-xs-auto">
+            {% include widget.bootstrap_template_name %}
+        </div>
+    {% endfor %}
+</div>

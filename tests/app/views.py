@@ -1,6 +1,6 @@
 from django.views.generic import FormView, TemplateView
 
-from .forms import TestForm
+from .forms import DemoForm
 
 
 class HomeView(TemplateView):
@@ -8,5 +8,5 @@ class HomeView(TemplateView):
 
 
 class TestFormView(FormView):
-    form_class = TestForm
+    form_class = DemoForm
     template_name = "form.html"
