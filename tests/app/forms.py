@@ -20,14 +20,8 @@ class DemoForm(forms.Form):
         choices=(("ice cream", "ice cream"), ("pancakes", "pancakes")),
         widget=forms.CheckboxSelectMultiple,
     )
-    date = forms.DateField(
-        label="Date",
-        widget=forms.SelectDateWidget,
-    )
-    comments = forms.CharField(
-        label="Comments",
-        widget=forms.Textarea,
-    )
+    date = forms.DateField(label="Date", widget=forms.SelectDateWidget,)
+    comments = forms.CharField(label="Comments", widget=forms.Textarea,)
 
     def clean(self):
         result = super().clean()

@@ -7,7 +7,9 @@
 {% block content %}
     <div class="container">
         <form action="" method="post">
-            {% bootstrap_form form %}
+            {% bootstrap_form form exclude="dessert" %}
+            <h2>And what would you like for dessert?</h2>
+            {% bootstrap_field form.dessert option_inline=True show_label=False %}
             <input type="submit" class="btn btn-success">
         </form>
     </div>

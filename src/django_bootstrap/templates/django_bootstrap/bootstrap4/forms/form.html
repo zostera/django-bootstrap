@@ -5,5 +5,9 @@
 {% endif %}
 
 {% for field in form %}
-    {% bootstrap_field field %}
+    {% if not fields or field.name in fields %}
+        {% if field.name not in exclude %}
+            {% bootstrap_field field %}
+        {% endif %}
+    {% endif %}
 {% endfor %}

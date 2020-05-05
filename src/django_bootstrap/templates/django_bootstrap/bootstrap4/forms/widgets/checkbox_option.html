@@ -1,7 +1,11 @@
 {% if widget.wrap_label %}
-    <div class="form-check">
-        {% include "django_bootstrap/bootstrap4/forms/widgets/checkbox.html" %}
-        <label class="form-check-label" for="{{ widget.attrs.id }}">{{ widget.label }}</label>
+    <div class="form-check{% if option_inline %} form-check-inline{% endif %}">
+        {% if option_label %}
+            {% include "django_bootstrap/bootstrap4/forms/widgets/checkbox.html" with no_option_label=False %}
+            <label class="form-check-label" for="{{ widget.attrs.id }}">{{ widget.label }}</label>
+        {% else %}
+            {% include "django_bootstrap/bootstrap4/forms/widgets/checkbox.html" with no_option_label=True %}
+        {% endif %}
     </div>
 {% else %}
     {% include "django_bootstrap/bootstrap4/forms/widgets/checkbox.html" %}

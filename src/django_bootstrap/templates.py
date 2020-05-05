@@ -30,7 +30,10 @@ class BootstrapTemplate:
 
     def get_context(self):
         """Return context for template."""
-        return {}
+        context = {
+            "kwargs": self.kwargs,
+        }
+        return context
 
     def get_template(self, template_name=None):
         """Return the template to render."""
@@ -67,9 +70,17 @@ class BootstrapFormTemplate(BootstrapTemplate):
         self.form = form
         super().__init__(**kwargs)
 
+    def _get_list_from_kwarg(self, name):
+        """Return a list from a kwarg."""
+        value = self.kwargs.get(name, None)
+        value = str(value) if value else ""
+        return list(filter(None, [item.strip() for item in value.split(",")]))
+
     def get_context(self):
         context = super().get_context()
         context["form"] = self.form
+        context["fields"] = None # self._get_list_from_kwarg("fields")
+        context["exclude"] = self._get_list_from_kwarg("exclude")
         return context
 
 
@@ -107,7 +118,9 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         widget_context["bootstrap_template_name"] = replace_django_template_path(template_name)
 
         if "subwidgets" in widget_context:
-            widget_context['subwidgets'] = [self.patch_widget_context(subwidget) for subwidget in widget_context['subwidgets']]
+            widget_context["subwidgets"] = [
+                self.patch_widget_context(subwidget) for subwidget in widget_context["subwidgets"]
+            ]
 
         return widget_context
 
@@ -138,11 +151,12 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         context = super().get_context()
         context["field"] = self.field
         context["widget"] = self.get_widget_context(only_initial)
-        context["kwargs"] = self.kwargs
-        context["show_label"] = self.kwargs.get("show_label", True)
-        context["form_group_class"] = self.kwargs.get("form_group_class", "form-group")
         context["addon_before"] = self.kwargs.get("addon_before", "")
         context["addon_after"] = self.kwargs.get("addon_after", "")
+        context["show_label"] = self.kwargs.get("show_label", True)
+        context["option_inline"] = self.kwargs.get("option_inline", False)
+        context["option_label"] = self.kwargs.get("option_label", True)
+        context["form_group_class"] = self.kwargs.get("form_group_class", "form-group")
         return context
 
     def render(self):
