@@ -2,9 +2,13 @@ from django import forms
 
 
 class DemoForm(forms.Form):
+
+    use_required_attribute = False
+
     name = forms.CharField(label="Name", max_length=100, help_text="Your full name")
     age = forms.IntegerField(label="Age", help_text="An educated guess will do")
     gender = forms.ChoiceField(label="Gender", choices=(("F", "she/her"), ("M", "he/him"), ("X", "they/their")))
+    avatar = forms.FileField()
     drink = forms.ChoiceField(
         label="Drink",
         choices=(("water", "water"), ("juice", "juice",), ("tea", "tea"), ("coffee", "coffee")),

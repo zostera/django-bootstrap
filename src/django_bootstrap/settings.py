@@ -1,12 +1,9 @@
 from django.conf import settings
 
-DEFAULT_SETTINGS = {"template_dir": "django_bootstrap/bootstrap4/"}
+DJANGO_BOOTSTRAP_DEFAULTS = {"template_dir": "django_bootstrap/bootstrap4/"}
 
 
-def bootstrap_setting(name, default):
-    """Return value for bootstrap setting if it exists, otherwise the given default value."""
-    try:
-        django_bootstrap_settings = settings.DJANGO_BOOTSTRAP
-    except AttributeError:
-        django_bootstrap_settings = DEFAULT_SETTINGS
-    return django_bootstrap_settings.get(name, default)
+def bootstrap_setting(name, default=None):
+    """Return requested bootstrap setting it exists in settings or defaults, otherwise the given default value."""
+    bootstrap3_settings = getattr(settings, "DJANGO_BOOTSTRAP", {})
+    return bootstrap3_settings.get(name, DJANGO_BOOTSTRAP_DEFAULTS.get(name, default))

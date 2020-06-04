@@ -10,7 +10,7 @@ class BootstrapTemplate:
     DEFAULT_TEMPLATE_FILE = None
 
     def __init__(self, *, template_file=None, template_dir=None, **kwargs):
-        self.template_dir = template_dir or bootstrap_setting("template_dir", None)
+        self.template_dir = template_dir or bootstrap_setting("template_dir")
         self.template_file = template_file or self.DEFAULT_TEMPLATE_FILE
         self.kwargs = kwargs
 
@@ -23,9 +23,11 @@ class BootstrapTemplate:
     def get_template_name(self):
         """Return template name for file."""
         template_dir = self.get_template_dir()
+        if not template_dir:
+            raise ValueError("Template directory is not set")
         template_file = self.get_template_file()
-        assert template_dir, "Template directory is not set."
-        assert template_file, "Template file is not set."
+        if not template_file:
+            raise ValueError("Template file is not set")
         return f"{self.template_dir}{self.template_file}"
 
     def get_context(self):
@@ -79,7 +81,7 @@ class BootstrapFormTemplate(BootstrapTemplate):
     def get_context(self):
         context = super().get_context()
         context["form"] = self.form
-        context["fields"] = None # self._get_list_from_kwarg("fields")
+        context["fields"] = None  # self._get_list_from_kwarg("fields")
         context["exclude"] = self._get_list_from_kwarg("exclude")
         return context
 
@@ -163,6 +165,6 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         output = super().render()
         if self.field.field.show_hidden_initial:
             context = self.get_context(only_initial=True)
-            template = get_template()
+            template = self.get_template(template_name="forms/widget/input.html")
             output += template.render(context)
         return output
