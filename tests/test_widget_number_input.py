@@ -9,14 +9,14 @@ class NumberWidgetTestForm(forms.Form):
 
 class NumberWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of number widget."""
-
+    form_class = NumberWidgetTestForm
     tests = [
         {
             "field": "age",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_age">Age</label>'
-                '<input class="form-control" id="id_age" name="age" required type="number" maxlength="10">'
+                '<input class="form-control" id="id_age" name="age" required type="number">'
                 "</div>"
             ),
         },
@@ -26,31 +26,31 @@ class NumberWidgetTestCase(BootstrapFieldTestCase):
             "html": (
                 '<div class="form-group">'
                 '<label for="id_age">Age</label>'
-                '<input class="form-control" id="id_age" name="age" required type="number" maxlength="10">'
-                '<small class="form-number number-danger">This field is required.</small>'
+                '<input class="form-control" id="id_age" name="age" required type="number">'
+                '<small class="form-text text-danger">This field is required.</small>'
                 "</div>"
             ),
         },
         {
             "field": "age",
-            "value": "this is more than 10 characters",
+            "value": "alphabet",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_age">Age</label>'
-                '<input class="form-control" id="id_age" name="age" required type="number" maxlength="10"'
-                ' value="this is more than 10 characters">'
-                '<small class="form-number number-danger">Ensure this value has at most 10 characters (it has 31).</small>'
+                '<input class="form-control" id="id_age" name="age" required type="number"'
+                ' value="alphabet">'
+                '<small class="form-text text-danger">Enter a whole number.</small>'
                 "</div>"
             ),
         },
         {
             "field": "age",
-            "value": "four",
+            "value": "4",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_age">Age</label>'
-                '<input class="form-control" id="id_age" name="age" required type="number" maxlength="10"'
-                ' value="four">'
+                '<input class="form-control" id="id_age" name="age" required type="number"'
+                ' value="4">'
                 "</div>"
             ),
         },

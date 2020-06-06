@@ -9,7 +9,7 @@ class TextWidgetTestForm(forms.Form):
 
 class TextWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of text widget."""
-
+    form_class = TextWidgetTestForm
     tests = [
         {
             "field": "content",
