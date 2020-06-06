@@ -3,20 +3,20 @@ from django import forms
 from tests.test_bootstrap_field import BootstrapFieldTestCase
 
 
-class UrlWidgetTestForm(forms.Form):
-    secret = forms.CharField(label="Secret", widget=forms.PasswordInput)
+class PasswordWidgetTestForm(forms.Form):
+    secret = forms.CharField(label="Secret", widget=forms.PasswordInput, min_length=5)
 
 
-class UrlWidgetTestCase(BootstrapFieldTestCase):
-    """Test HTML generation of url widget."""
-    form_class = UrlWidgetTestForm
+class PasswordWidgetTestCase(BootstrapFieldTestCase):
+    """Test HTML generation of password widget."""
+    form_class = PasswordWidgetTestForm
     tests = [
         {
             "field": "secret",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_secret">Secret</label>'
-                '<input class="form-control" id="id_secret" name="secret" required type="url">'
+                '<input class="form-control" id="id_secret" name="secret" required minlength="5" type="password">'
                 "</div>"
             ),
         },
@@ -26,31 +26,29 @@ class UrlWidgetTestCase(BootstrapFieldTestCase):
             "html": (
                 '<div class="form-group">'
                 '<label for="id_secret">Secret</label>'
-                '<input class="form-control" id="id_secret" name="secret" required type="url">'
+                '<input class="form-control" id="id_secret" name="secret" required minlength="5" type="password">'
                 '<small class="form-text text-danger">This field is required.</small>'
                 "</div>"
             ),
         },
         {
             "field": "secret",
-            "value": "alphabet",
+            "value": "four",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_secret">Secret</label>'
-                '<input class="form-control" id="id_secret" name="secret" required type="url"'
-                ' value="alphabet">'
-                '<small class="form-text text-danger">Enter a valid URL.</small>'
+                '<input class="form-control" id="id_secret" name="secret" required minlength="5" type="password">'
+                '<small class="form-text text-danger">Ensure this value has at least 5 characters (it has 4).</small>'
                 "</div>"
             ),
         },
         {
             "field": "secret",
-            "value": "https://example.com",
+            "value": "this.is.a.secret",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_secret">Secret</label>'
-                '<input class="form-control" id="id_secret" name="secret" required type="url"'
-                ' value="https://example.com">'
+                '<input class="form-control" id="id_secret" name="secret" required minlength="5" type="password">'
                 "</div>"
             ),
         },
