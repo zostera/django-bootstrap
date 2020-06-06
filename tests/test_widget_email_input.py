@@ -9,6 +9,7 @@ class EmailWidgetTestForm(forms.Form):
 
 class EmailWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of email widget."""
+
     form_class = EmailWidgetTestForm
     tests = [
         {

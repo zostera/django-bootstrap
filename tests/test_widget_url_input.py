@@ -9,6 +9,7 @@ class UrlWidgetTestForm(forms.Form):
 
 class UrlWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of url widget."""
+
     form_class = UrlWidgetTestForm
     tests = [
         {

@@ -9,6 +9,7 @@ class PasswordWidgetTestForm(forms.Form):
 
 class PasswordWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of password widget."""
+
     form_class = PasswordWidgetTestForm
     tests = [
         {

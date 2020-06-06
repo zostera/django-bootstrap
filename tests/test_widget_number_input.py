@@ -9,6 +9,7 @@ class NumberWidgetTestForm(forms.Form):
 
 class NumberWidgetTestCase(BootstrapFieldTestCase):
     """Test HTML generation of number widget."""
+
     form_class = NumberWidgetTestForm
     tests = [
         {
