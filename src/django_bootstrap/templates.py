@@ -95,29 +95,27 @@ class BootstrapFieldTemplate(BootstrapTemplate):
         self.field = field
         super().__init__(**kwargs)
 
+    def get_bootstrap_template_name(self, context):
+        """Return bootstrap template name for widget context."""
+        bootstrap_template_name = context.get("bootstrap_template_name", "")
+        if not bootstrap_template_name:
+            template_name = context.get("template_name", "")
+            bootstrap_template_name = (
+                template_name.replace("django/", self.get_template_dir(), 1) if template_name else ""
+            )
+        return bootstrap_template_name
+
     def patch_widget_context(self, widget_context):
-        # TODO: There must be a better way to do this
+        """Add `bootstrap_template_name` to context."""
 
-        def replace_django_template_path(template_name):
-            return template_name.replace("django/", self.get_template_dir(), 1) if template_name else ""
+        widget_context["bootstrap_template_name"] = self.get_bootstrap_template_name(widget_context)
 
-        optgroups = widget_context.get("optgroups")
-        if optgroups:
-            patched_optgroups = []
-            for optgroup in optgroups:
-                name = optgroup[0]
-                options = optgroup[1]
-                index = optgroup[2]
-                patched_options = []
-                for option in options:
-                    template_name = option.get("template_name", "")
-                    option["bootstrap_template_name"] = replace_django_template_path(template_name)
-                    patched_options.append(option)
-                patched_optgroups.append((name, options, index))
-            widget_context["optgroups"] = patched_optgroups
-
-        template_name = widget_context.get("template_name", "")
-        widget_context["bootstrap_template_name"] = replace_django_template_path(template_name)
+        if "optgroups" in widget_context:
+            for num_optgroup, optgroup in enumerate(widget_context["optgroups"]):
+                for num_option, option in enumerate(optgroup[1]):
+                    widget_context["optgroups"][num_optgroup][1][num_option][
+                        "bootstrap_template_name"
+                    ] = self.get_bootstrap_template_name(option)
 
         if "subwidgets" in widget_context:
             widget_context["subwidgets"] = [
