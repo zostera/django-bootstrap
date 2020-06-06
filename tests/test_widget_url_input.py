@@ -4,7 +4,7 @@ from tests.test_bootstrap_field import BootstrapFieldTestCase
 
 
 class UrlWidgetTestForm(forms.Form):
-    website = forms.UrlField(label="Website")
+    website = forms.URLField(label="Website")
 
 
 class UrlWidgetTestCase(BootstrapFieldTestCase):
@@ -39,18 +39,18 @@ class UrlWidgetTestCase(BootstrapFieldTestCase):
                 '<label for="id_website">Website</label>'
                 '<input class="form-control" id="id_website" name="website" required type="url"'
                 ' value="alphabet">'
-                '<small class="form-text text-danger">Enter a valid url website.</small>'
+                '<small class="form-text text-danger">Enter a valid URL.</small>'
                 "</div>"
             ),
         },
         {
             "field": "website",
-            "value": "name@example.com",
+            "value": "https://example.com",
             "html": (
                 '<div class="form-group">'
                 '<label for="id_website">Website</label>'
                 '<input class="form-control" id="id_website" name="website" required type="url"'
-                ' value="name@example.com">'
+                ' value="https://example.com">'
                 "</div>"
             ),
         },
