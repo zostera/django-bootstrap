@@ -1,8 +1,14 @@
+from django import forms
+
 from tests.test_bootstrap_field import BootstrapFieldTestCase
 
 
-class InputFieldTestCase(BootstrapFieldTestCase):
-    """Test input field."""
+class TextWidgetTestForm(forms.Form):
+    content = forms.CharField(label="Content", max_length=10)
+
+
+class TextWidgetTestCase(BootstrapFieldTestCase):
+    """Test HTML generation of text widget."""
 
     tests = [
         {
