@@ -1,42 +1,9 @@
-from django import forms
-from django.test import TestCase
-
-from tests.test_template_tags import render_template
-
-
-class InputFieldTestForm(forms.Form):
-    content = forms.CharField(label="Content", max_length=10)
-
-
-class BootstrapFieldTestCase(TestCase):
-    """Test bootstrap field HTML output."""
-
-    form_class = None
-    tests = []
-
-    def test_tests(self):
-        if self.form_class:
-            form_class = self.form_class
-            for test in self.tests:
-                field = test["field"]
-                html = test["html"]
-                data = test.get("data", None)
-                if "value" in test:
-                    data = data or {}
-                    data[field] = test["value"]
-                if data is None:
-                    form = form_class()
-                else:
-                    form = form_class(data=data)
-                    form.is_valid()
-                output = render_template("{% bootstrap_field form." + field + " %}", form=form)
-                self.assertHTMLEqual(output, html)
+from tests.test_bootstrap_field import BootstrapFieldTestCase
 
 
 class InputFieldTestCase(BootstrapFieldTestCase):
     """Test input field."""
 
-    form_class = InputFieldTestForm
     tests = [
         {
             "field": "content",
