@@ -11,6 +11,8 @@ class InputFieldTestForm(forms.Form):
 class BootstrapFieldTestCase(TestCase):
     """Test bootstrap field HTML output."""
 
+    maxDiff = None
+
     form_class = None
     tests = []
 
