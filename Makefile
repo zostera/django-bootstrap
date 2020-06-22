@@ -1,12 +1,12 @@
-.PHONY: clean test tox reformat lint docs porcelain branch build publish
+.PHONY: test tox reformat lint docs porcelain branch build publish
 
 PROJECT_DIR=src/django_bootstrap
 PYTHON_SOURCES=${PROJECT_DIR} tests *.py
 
-clean:
-	rm -rf build dist *.egg-info
-
 test:
+	python manage.py test
+
+coverage:
 	coverage run manage.py test
 	coverage report
 
@@ -32,18 +32,18 @@ ifeq ($(shell git status --porcelain),)
 	@echo "Working directory is clean."
 else
 	@echo "Error - working directory is dirty. Commit those changes!";
-	exit 1;
+	@exit 1;
 endif
 
 branch:
-ifeq ($(shell git rev-parse --abbrev-ref HEAD),master)
-	@echo "On branch master."
+ifeq ($(shell git rev-parse --abbrev-ref HEAD),main)
+	@echo "On branch main."
 else
-	echo "Error - Not on branch master!"
-	exit 1;
+	@echo "Error - Not on branch main!"
+	@exit 1;
 endif
 
-build: clean docs
+build: docs
 	poetry build
 
 publish: porcelain branch build

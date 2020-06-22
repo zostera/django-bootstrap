@@ -2,7 +2,7 @@
 category = "dev"
 description = "A configurable sidebar-enabled Sphinx theme"
 name = "alabaster"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.7.12"
 
@@ -20,10 +20,10 @@ description = "ASGI specs, helper code, and adapters"
 name = "asgiref"
 optional = false
 python-versions = ">=3.5"
-version = "3.2.7"
+version = "3.2.10"
 
 [package.extras]
-tests = ["pytest (>=4.3.0,<4.4.0)", "pytest-asyncio (>=0.10.0,<0.11.0)"]
+tests = ["pytest", "pytest-asyncio"]
 
 [[package]]
 category = "dev"
@@ -54,12 +54,27 @@ pyflakes = ">=1.1.0"
 category = "dev"
 description = "Internationalization utilities"
 name = "babel"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.8.0"
 
 [package.dependencies]
 pytz = ">=2015.7"
+
+[[package]]
+category = "dev"
+description = "Screen-scraping library"
+name = "beautifulsoup4"
+optional = false
+python-versions = "*"
+version = "4.9.1"
+
+[package.dependencies]
+soupsieve = [">1.2", "<2.0"]
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
 
 [[package]]
 category = "dev"
@@ -85,15 +100,15 @@ d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
 category = "dev"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
-optional = false
+optional = true
 python-versions = "*"
-version = "2020.4.5.2"
+version = "2020.6.20"
 
 [[package]]
 category = "dev"
 description = "Universal encoding detector for Python 2 and 3"
 name = "chardet"
-optional = false
+optional = true
 python-versions = "*"
 version = "3.0.4"
 
@@ -110,7 +125,7 @@ category = "dev"
 description = "Cross-platform colored terminal text."
 marker = "sys_platform == \"win32\""
 name = "colorama"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.4.3"
 
@@ -129,22 +144,6 @@ version = "*"
 
 [package.extras]
 toml = ["toml"]
-
-[[package]]
-category = "dev"
-description = "Show coverage stats online via coveralls.io"
-name = "coveralls"
-optional = false
-python-versions = ">= 3.5"
-version = "2.0.0"
-
-[package.dependencies]
-coverage = ">=4.1,<6.0"
-docopt = ">=0.6.1"
-requests = ">=1.0.0"
-
-[package.extras]
-yaml = ["PyYAML (>=3.10)"]
 
 [[package]]
 category = "main"
@@ -176,17 +175,9 @@ untokenize = "*"
 
 [[package]]
 category = "dev"
-description = "Pythonic argument parser, that will make you smile"
-name = "docopt"
-optional = false
-python-versions = "*"
-version = "0.6.2"
-
-[[package]]
-category = "dev"
 description = "Docutils -- Python Documentation Utilities"
 name = "docutils"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.16"
 
@@ -196,7 +187,7 @@ description = "the modular source code checker: pep8 pyflakes and co"
 name = "flake8"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
-version = "3.8.2"
+version = "3.8.3"
 
 [package.dependencies]
 mccabe = ">=0.6.0,<0.7.0"
@@ -211,7 +202,7 @@ version = "*"
 category = "dev"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.9"
 
@@ -219,7 +210,7 @@ version = "2.9"
 category = "dev"
 description = "Getting image size from png/jpeg/jpeg2000/gif file"
 name = "imagesize"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.2.0"
 
@@ -257,7 +248,7 @@ xdg_home = ["appdirs (>=1.4.0)"]
 category = "dev"
 description = "A very fast and expressive template engine."
 name = "jinja2"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "2.11.2"
 
@@ -269,9 +260,21 @@ i18n = ["Babel (>=0.8)"]
 
 [[package]]
 category = "dev"
+description = "Markdown and reStructuredText in a single file."
+name = "m2r"
+optional = true
+python-versions = "*"
+version = "0.2.1"
+
+[package.dependencies]
+docutils = "*"
+mistune = "*"
+
+[[package]]
+category = "dev"
 description = "Safely add untrusted strings to HTML/XML markup."
 name = "markupsafe"
-optional = false
+optional = true
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 version = "1.1.1"
 
@@ -285,9 +288,17 @@ version = "0.6.1"
 
 [[package]]
 category = "dev"
+description = "The fastest markdown parser in pure Python"
+name = "mistune"
+optional = true
+python-versions = "*"
+version = "0.8.4"
+
+[[package]]
+category = "dev"
 description = "Core utilities for Python packages"
 name = "packaging"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "20.4"
 
@@ -334,7 +345,7 @@ version = "2.2.0"
 category = "dev"
 description = "Pygments is a syntax highlighting package written in Python."
 name = "pygments"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "2.6.1"
 
@@ -342,7 +353,7 @@ version = "2.6.1"
 category = "dev"
 description = "Python parsing module"
 name = "pyparsing"
-optional = false
+optional = true
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "2.4.7"
 
@@ -366,9 +377,9 @@ version = "2020.6.8"
 category = "dev"
 description = "Python HTTP for Humans."
 name = "requests"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "2.23.0"
+version = "2.24.0"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
@@ -384,7 +395,7 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
 category = "dev"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "1.15.0"
 
@@ -398,9 +409,17 @@ version = "2.0.0"
 
 [[package]]
 category = "dev"
+description = "A modern CSS selector implementation for Beautiful Soup."
+name = "soupsieve"
+optional = false
+python-versions = "*"
+version = "1.9.6"
+
+[[package]]
+category = "dev"
 description = "Python documentation generator"
 name = "sphinx"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "2.4.4"
 
@@ -431,7 +450,7 @@ test = ["pytest (<5.3.3)", "pytest-cov", "html5lib", "flake8 (>=3.5.0)", "flake8
 category = "dev"
 description = "Read the Docs theme for Sphinx"
 name = "sphinx-rtd-theme"
-optional = false
+optional = true
 python-versions = "*"
 version = "0.4.3"
 
@@ -442,7 +461,7 @@ sphinx = "*"
 category = "dev"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
 name = "sphinxcontrib-applehelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.2"
 
@@ -454,7 +473,7 @@ test = ["pytest"]
 category = "dev"
 description = "sphinxcontrib-devhelp is a sphinx extension which outputs Devhelp document."
 name = "sphinxcontrib-devhelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.2"
 
@@ -466,7 +485,7 @@ test = ["pytest"]
 category = "dev"
 description = "sphinxcontrib-htmlhelp is a sphinx extension which renders HTML help files"
 name = "sphinxcontrib-htmlhelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.3"
 
@@ -478,7 +497,7 @@ test = ["pytest", "html5lib"]
 category = "dev"
 description = "A sphinx extension which renders display math in HTML via JavaScript"
 name = "sphinxcontrib-jsmath"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.1"
 
@@ -489,7 +508,7 @@ test = ["pytest", "flake8", "mypy"]
 category = "dev"
 description = "sphinxcontrib-qthelp is a sphinx extension which outputs QtHelp document."
 name = "sphinxcontrib-qthelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.3"
 
@@ -501,7 +520,7 @@ test = ["pytest"]
 category = "dev"
 description = "sphinxcontrib-serializinghtml is a sphinx extension which outputs \"serialized\" HTML files (json and pickle)."
 name = "sphinxcontrib-serializinghtml"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.1.4"
 
@@ -545,7 +564,7 @@ version = "0.1.1"
 category = "dev"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 version = "1.25.9"
 
@@ -567,8 +586,11 @@ version = "3.1.0"
 docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
+[extras]
+docs = []
+
 [metadata]
-content-hash = "fa34e6446f07a68e8477ebc4d0ce8170026eb3fafc50fa4a8920b444fbe14917"
+content-hash = "cfa0576d0da5c0640c6516046634c72fd27f779074c917676527c4352ea48212"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -581,8 +603,8 @@ appdirs = [
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
 ]
 asgiref = [
-    {file = "asgiref-3.2.7-py2.py3-none-any.whl", hash = "sha256:9ca8b952a0a9afa61d30aa6d3d9b570bb3fd6bafcf7ec9e6bed43b936133db1c"},
-    {file = "asgiref-3.2.7.tar.gz", hash = "sha256:8036f90603c54e93521e5777b2b9a39ba1bad05773fcf2d208f0299d1df58ce5"},
+    {file = "asgiref-3.2.10-py3-none-any.whl", hash = "sha256:9fc6fb5d39b8af147ba40765234fa822b39818b12cc80b35ad9b0cef3a476aed"},
+    {file = "asgiref-3.2.10.tar.gz", hash = "sha256:7e51911ee147dd685c3c8b805c0ad0cb58d360987b56953878f8c06d2d1c6f1a"},
 ]
 attrs = [
     {file = "attrs-19.3.0-py2.py3-none-any.whl", hash = "sha256:08a96c641c3a74e44eb59afb61a24f2cb9f4d7188748e76ba4bb5edfa3cb7d1c"},
@@ -595,13 +617,18 @@ babel = [
     {file = "Babel-2.8.0-py2.py3-none-any.whl", hash = "sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4"},
     {file = "Babel-2.8.0.tar.gz", hash = "sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38"},
 ]
+beautifulsoup4 = [
+    {file = "beautifulsoup4-4.9.1-py2-none-any.whl", hash = "sha256:e718f2342e2e099b640a34ab782407b7b676f47ee272d6739e60b8ea23829f2c"},
+    {file = "beautifulsoup4-4.9.1-py3-none-any.whl", hash = "sha256:a6237df3c32ccfaee4fd201c8f5f9d9df619b93121d01353a64a73ce8c6ef9a8"},
+    {file = "beautifulsoup4-4.9.1.tar.gz", hash = "sha256:73cc4d115b96f79c7d77c1c7f7a0a8d4c57860d1041df407dd1aae7f07a77fd7"},
+]
 black = [
     {file = "black-19.10b0-py36-none-any.whl", hash = "sha256:1b30e59be925fafc1ee4565e5e08abef6b03fe455102883820fe5ee2e4734e0b"},
     {file = "black-19.10b0.tar.gz", hash = "sha256:c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539"},
 ]
 certifi = [
-    {file = "certifi-2020.4.5.2-py2.py3-none-any.whl", hash = "sha256:9cd41137dc19af6a5e03b630eefe7d1f458d964d406342dd3edf625839b944cc"},
-    {file = "certifi-2020.4.5.2.tar.gz", hash = "sha256:5ad7e9a056d25ffa5082862e36f119f7f7cec6457fa07ee2f8c339814b80c9b1"},
+    {file = "certifi-2020.6.20-py2.py3-none-any.whl", hash = "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"},
+    {file = "certifi-2020.6.20.tar.gz", hash = "sha256:5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3"},
 ]
 chardet = [
     {file = "chardet-3.0.4-py2.py3-none-any.whl", hash = "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"},
@@ -648,10 +675,6 @@ coverage = [
     {file = "coverage-5.1-cp39-cp39-win_amd64.whl", hash = "sha256:bb28a7245de68bf29f6fb199545d072d1036a1917dca17a1e75bbb919e14ee8e"},
     {file = "coverage-5.1.tar.gz", hash = "sha256:f90bfc4ad18450c80b024036eaf91e4a246ae287701aaa88eaebebf150868052"},
 ]
-coveralls = [
-    {file = "coveralls-2.0.0-py2.py3-none-any.whl", hash = "sha256:41bd57b60321dfd5b56e990ab3f7ed876090691c21a9e3b005e1f6e42e6ba4b9"},
-    {file = "coveralls-2.0.0.tar.gz", hash = "sha256:d213f5edd49053d03f0db316ccabfe17725f2758147afc9a37eaca9d8e8602b5"},
-]
 django = [
     {file = "Django-3.0.7-py3-none-any.whl", hash = "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"},
     {file = "Django-3.0.7.tar.gz", hash = "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2"},
@@ -659,16 +682,13 @@ django = [
 docformatter = [
     {file = "docformatter-1.3.1.tar.gz", hash = "sha256:d8db663665becccac75737b2635a06076f2c832bf861322a7bfc512f0a9fa7e3"},
 ]
-docopt = [
-    {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
-]
 docutils = [
     {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
     {file = "docutils-0.16.tar.gz", hash = "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"},
 ]
 flake8 = [
-    {file = "flake8-3.8.2-py2.py3-none-any.whl", hash = "sha256:ccaa799ef9893cebe69fdfefed76865aeaefbb94cb8545617b2298786a4de9a5"},
-    {file = "flake8-3.8.2.tar.gz", hash = "sha256:c69ac1668e434d37a2d2880b3ca9aafd54b3a10a3ac1ab101d22f29e29cf8634"},
+    {file = "flake8-3.8.3-py2.py3-none-any.whl", hash = "sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c"},
+    {file = "flake8-3.8.3.tar.gz", hash = "sha256:f04b9fcbac03b0a3e58c0ab3a0ecc462e023a9faf046d57794184028123aa208"},
 ]
 idna = [
     {file = "idna-2.9-py2.py3-none-any.whl", hash = "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"},
@@ -689,6 +709,9 @@ isort = [
 jinja2 = [
     {file = "Jinja2-2.11.2-py2.py3-none-any.whl", hash = "sha256:f0a4641d3cf955324a89c04f3d94663aa4d638abe8f733ecd3582848e1c37035"},
     {file = "Jinja2-2.11.2.tar.gz", hash = "sha256:89aab215427ef59c34ad58735269eb58b1a5808103067f7bb9d5836c651b3bb0"},
+]
+m2r = [
+    {file = "m2r-0.2.1.tar.gz", hash = "sha256:bf90bad66cda1164b17e5ba4a037806d2443f2a4d5ddc9f6a5554a0322aaed99"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
@@ -728,6 +751,10 @@ markupsafe = [
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
+]
+mistune = [
+    {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
+    {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -785,8 +812,8 @@ regex = [
     {file = "regex-2020.6.8.tar.gz", hash = "sha256:e9b64e609d37438f7d6e68c2546d2cb8062f3adb27e6336bc129b51be20773ac"},
 ]
 requests = [
-    {file = "requests-2.23.0-py2.py3-none-any.whl", hash = "sha256:43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"},
-    {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
+    {file = "requests-2.24.0-py2.py3-none-any.whl", hash = "sha256:fe75cc94a9443b9246fc7049224f75604b113c36acb93f87b80ed42c44cbb898"},
+    {file = "requests-2.24.0.tar.gz", hash = "sha256:b3559a131db72c33ee969480840fff4bb6dd111de7dd27c8ee1f820f4f00231b"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
@@ -795,6 +822,10 @@ six = [
 snowballstemmer = [
     {file = "snowballstemmer-2.0.0-py2.py3-none-any.whl", hash = "sha256:209f257d7533fdb3cb73bdbd24f436239ca3b2fa67d56f6ff88e86be08cc5ef0"},
     {file = "snowballstemmer-2.0.0.tar.gz", hash = "sha256:df3bac3df4c2c01363f3dd2cfa78cce2840a79b9f1c2d2de9ce8d31683992f52"},
+]
+soupsieve = [
+    {file = "soupsieve-1.9.6-py2.py3-none-any.whl", hash = "sha256:feb1e937fa26a69e08436aad4a9037cd7e1d4c7212909502ba30701247ff8abd"},
+    {file = "soupsieve-1.9.6.tar.gz", hash = "sha256:7985bacc98c34923a439967c1a602dc4f1e15f923b6fcf02344184f86cc7efaa"},
 ]
 sphinx = [
     {file = "Sphinx-2.4.4-py3-none-any.whl", hash = "sha256:fc312670b56cb54920d6cc2ced455a22a547910de10b3142276495ced49231cb"},
