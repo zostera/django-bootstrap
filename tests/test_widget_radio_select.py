@@ -83,7 +83,9 @@ class RadioSelectWidgetTestCase(BootstrapFieldTestCase):
                 '<input type="radio" name="drink" required class="form-check-input" value="tea" id="id_drink_2">'
                 '<label class="form-check-label" for="id_drink_2">tea</label>'
                 "</div>"
-                '<small class="form-text text-danger">Select a valid choice. A is not one of the available choices.</small>'
+                '<small class="form-text text-danger">'
+                "Select a valid choice. A is not one of the available choices."
+                "</small>"
                 "</div>"
             ),
         },
@@ -102,7 +104,8 @@ class RadioSelectWidgetTestCase(BootstrapFieldTestCase):
                 '<label class="form-check-label" for="id_drink_1">juice</label>'
                 "</div>"
                 '<div class="form-check">'
-                '<input checked type="radio" name="drink" required class="form-check-input" value="tea" id="id_drink_2">'
+                '<input checked type="radio" name="drink" required'
+                ' class="form-check-input" value="tea" id="id_drink_2">'
                 '<label class="form-check-label" for="id_drink_2">tea</label>'
                 "</div>"
                 "</div>"

@@ -53,7 +53,9 @@ class SelectWidgetTestCase(BootstrapFieldTestCase):
                 '<option value="M">he/him</option>'
                 '<option value="X">they/their</option>'
                 "</select>"
-                '<small class="form-text text-danger">Select a valid choice. A is not one of the available choices.</small>'
+                '<small class="form-text text-danger">'
+                "Select a valid choice. A is not one of the available choices."
+                "</small>"
                 "</div>"
             ),
         },
