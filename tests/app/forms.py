@@ -11,12 +11,27 @@ class DemoForm(forms.Form):
     avatar = forms.FileField()
     drink = forms.ChoiceField(
         label="Drink",
-        choices=(("water", "water"), ("juice", "juice",), ("tea", "tea"), ("coffee", "coffee")),
+        choices=(
+            ("water", "water"),
+            (
+                "juice",
+                "juice",
+            ),
+            ("tea", "tea"),
+            ("coffee", "coffee"),
+        ),
         widget=forms.RadioSelect,
     )
     food = forms.MultipleChoiceField(
         label="Food",
-        choices=(("pizza", "pizza"), ("veggie bowl", "veggie bowl",), ("falafel", "falafel")),
+        choices=(
+            ("pizza", "pizza"),
+            (
+                "veggie bowl",
+                "veggie bowl",
+            ),
+            ("falafel", "falafel"),
+        ),
         help_text="All of our products are vegetarian",
     )
     dessert = forms.MultipleChoiceField(
@@ -24,8 +39,14 @@ class DemoForm(forms.Form):
         choices=(("ice cream", "ice cream"), ("pancakes", "pancakes")),
         widget=forms.CheckboxSelectMultiple,
     )
-    date = forms.DateField(label="Date", widget=forms.SelectDateWidget,)
-    comments = forms.CharField(label="Comments", widget=forms.Textarea,)
+    date = forms.DateField(
+        label="Date",
+        widget=forms.SelectDateWidget,
+    )
+    comments = forms.CharField(
+        label="Comments",
+        widget=forms.Textarea,
+    )
 
     def clean(self):
         result = super().clean()

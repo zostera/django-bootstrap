@@ -5,7 +5,16 @@ from tests.test_bootstrap_field import BootstrapFieldTestCase
 
 class RadioSelectWidgetTestForm(forms.Form):
     drink = forms.ChoiceField(
-        label="Drink", choices=(("water", "water"), ("juice", "juice",), ("tea", "tea")), widget=forms.RadioSelect,
+        label="Drink",
+        choices=(
+            ("water", "water"),
+            (
+                "juice",
+                "juice",
+            ),
+            ("tea", "tea"),
+        ),
+        widget=forms.RadioSelect,
     )
 
 

@@ -12,7 +12,10 @@ class HiddenWidgetTestCase(BootstrapFieldTestCase):
 
     form_class = HiddenWidgetTestForm
     tests = [
-        {"field": "secret", "html": ('<input class="form-control" id="id_secret" name="secret" type="hidden">'),},
+        {
+            "field": "secret",
+            "html": ('<input class="form-control" id="id_secret" name="secret" type="hidden">'),
+        },
         {
             "field": "secret",
             "data": {},

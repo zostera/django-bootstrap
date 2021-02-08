@@ -1,9 +1,5 @@
-from bs4 import BeautifulSoup
 from django import forms
 from django.test import TestCase
-
-from tests.compat import django3_html
-from tests.test_template_tags import render_template
 
 
 class XssTestForm(forms.Form):

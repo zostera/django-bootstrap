@@ -1,12 +1,9 @@
 .PHONY: test tox reformat lint docs porcelain branch build publish
 
 PROJECT_DIR=src/django_bootstrap
-PYTHON_SOURCES=${PROJECT_DIR} tests *.py
+PYTHON_SOURCES=${PROJECT_DIR} tests example *.py
 
 test:
-	python manage.py test
-
-coverage:
 	coverage run manage.py test
 	coverage report
 
@@ -16,7 +13,7 @@ tox:
 
 reformat:
 	autoflake -ir --remove-all-unused-imports ${PYTHON_SOURCES}
-	isort -rc ${PYTHON_SOURCES}
+	isort ${PYTHON_SOURCES}
 	docformatter -ir --pre-summary-newline --wrap-summaries=0 --wrap-descriptions=0 ${PYTHON_SOURCES}
 	black .
 
@@ -44,7 +41,7 @@ else
 endif
 
 build: docs
-	poetry build
+	python setup.py sdist bdist_wheel
 
 publish: porcelain branch build
-	poetry publish
+	twine upload dist/*
