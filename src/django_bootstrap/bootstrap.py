@@ -38,11 +38,11 @@ BOOTSTRAP4_DEFAULTS = {
     "required_css_class": "",
     "error_css_class": "is-invalid",
     "success_css_class": "is-valid",
-    "formset_renderers": {"default": "bootstrap4.renderers.FormsetRenderer"},
-    "form_renderers": {"default": "bootstrap4.renderers.FormRenderer"},
+    "formset_renderers": {"default": "django_bootstrap.renderers.FormsetRenderer"},
+    "form_renderers": {"default": "django_bootstrap.renderers.FormRenderer"},
     "field_renderers": {
-        "default": "bootstrap4.renderers.FieldRenderer",
-        "inline": "bootstrap4.renderers.InlineFieldRenderer",
+        "default": "django_bootstrap.renderers.FieldRenderer",
+        "inline": "django_bootstrap.renderers.InlineFieldRenderer",
     },
 }
 

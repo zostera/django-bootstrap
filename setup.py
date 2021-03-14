@@ -11,13 +11,13 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="django-bootstrap4",
+    name="django-django_bootstrap",
     zip_safe=False,
     version="2.3.2",
     description="Bootstrap 4 for Django",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/zostera/django-bootstrap4",
+    url="https://github.com/zostera/django-bootstrap",
     author="Dylan Verheul",
     author_email="dylan@dyve.net",
     license="BSD-3-Clause",

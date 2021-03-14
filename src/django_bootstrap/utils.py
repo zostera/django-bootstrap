@@ -56,30 +56,6 @@ def parse_token_contents(parser, token):
     return {"tag": tag, "args": args, "kwargs": kwargs, "asvar": asvar}
 
 
-def split_css_classes(css_classes):
-    """Turn string into a list of CSS classes."""
-    classes_list = text_value(css_classes).split(" ")
-    return [c for c in classes_list if c]
-
-
-def add_css_class(css_classes, css_class, prepend=False):
-    """Add a CSS class to a string of CSS classes."""
-    classes_list = split_css_classes(css_classes)
-    classes_to_add = [c for c in split_css_classes(css_class) if c not in classes_list]
-    if prepend:
-        classes_list = classes_to_add + classes_list
-    else:
-        classes_list += classes_to_add
-    return " ".join(classes_list)
-
-
-def remove_css_class(css_classes, css_class):
-    """Remove a CSS class from a string of CSS classes."""
-    remove = set(split_css_classes(css_class))
-    classes_list = [c for c in split_css_classes(css_classes) if c not in remove]
-    return " ".join(classes_list)
-
-
 def render_script_tag(url):
     """Build a script tag."""
     url_dict = sanitize_url_dict(url)
@@ -138,7 +114,7 @@ def url_replace_param(url, name, value):
 
 
 def sanitize_url_dict(url, url_attr="src"):
-    """Sanitize url dict as used in django-bootstrap4 settings."""
+    """Sanitize url dict as used in django-django_bootstrap settings."""
     if isinstance(url, str):
         return {url_attr: url}
     return url.copy()
