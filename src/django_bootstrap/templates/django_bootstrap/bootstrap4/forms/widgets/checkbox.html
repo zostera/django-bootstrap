@@ -1,1 +1,0 @@
-<input type="{{ widget.type }}" name="{{ widget.name }}" class="form-check-input{% if no_option_label %} position-static{% endif %}" {% if widget.value != None %}value="{{ widget.value|stringformat:'s' }}"{% endif %}{% if no_option_label %} aria-label="{{ widget.label|stringformat:'s' }}"{% endif %}{% include "django_bootstrap/bootstrap4/forms/widgets/attrs.html" %}>

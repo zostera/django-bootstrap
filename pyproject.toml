@@ -8,7 +8,7 @@ target-version = ["py36"]
 
 [tool.coverage.run]
 branch = true
-source = ["django_bootstrap"]
+source = ["bootstrap4"]
 
 [tool.coverage.paths]
 source = ["src", ".tox/*/site-packages"]
@@ -25,6 +25,6 @@ force_grid_wrap = 0
 combine_as_imports = true
 line_length = 120
 skip_glob = "*/migrations/*.py"
-known_first_party = ["django_bootstrap"]
+known_first_party = ["bootstrap4"]
 known_third_party = ["django"]
-src_paths = ["*.py", "bootstrap", "tests", "example"]
+src_paths = ["*.py", "bootstrap4", "tests", "example"]

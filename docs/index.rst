@@ -1,10 +1,17 @@
-django-bootstrap
-================
+Welcome to django-bootstrap4's documentation!
+=============================================
 
-Bootstrap for Django
+Contents:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   installation
    quickstart
+   migrate
+   templatetags
+   settings
+   templates
+   widgets
+   authors
+   changelog

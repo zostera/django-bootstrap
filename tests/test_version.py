@@ -1,12 +1,12 @@
 from django.test import TestCase
 
 
-class VersionTestCase(TestCase):
+class VersionTest(TestCase):
     """Test presence of package version."""
 
     def test_version(self):
-        import django_bootstrap
+        import bootstrap4
 
-        version = django_bootstrap.__version__
+        version = bootstrap4.__version__
         version_parts = version.split(".")
         self.assertTrue(len(version_parts) >= 3)

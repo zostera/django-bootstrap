@@ -5,7 +5,7 @@ try:
 except ImportError:
     from importlib_metadata import metadata
 
-PROJECT_NAME = "django-bootstrap"
+PROJECT_NAME = "django-bootstrap4"
 
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 project_metadata = metadata(PROJECT_NAME)
@@ -20,6 +20,7 @@ release = project_metadata["version"]
 version = ".".join(release.split(".")[:2])
 
 extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "m2r2"]
+source_suffix = [".rst", ".md"]
 pygments_style = "sphinx"
 htmlhelp_basename = f"{PROJECT_NAME}-doc"
 
