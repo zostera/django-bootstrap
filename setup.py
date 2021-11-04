@@ -11,10 +11,10 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="django-django_bootstrap",
+    name="django-bootstrap",
     zip_safe=False,
-    version="2.3.2",
-    description="Bootstrap 4 for Django",
+    version="21.1",
+    description="Bootstrap for Django",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/zostera/django-bootstrap",
@@ -29,8 +29,9 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Django",
         "Framework :: Django :: 2.2",
-        "Framework :: Django :: 3.0",
         "Framework :: Django :: 3.1",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
@@ -39,6 +40,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Libraries",
         "Topic :: Utilities",
     ],
