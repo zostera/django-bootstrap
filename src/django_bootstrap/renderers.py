@@ -33,8 +33,8 @@ from .forms import (
 from .text import text_value
 from .utils import render_template_file
 
+# If Django is set up without a database, importing this widget gives RuntimeError
 try:
-    # If Django is set up without a database, importing this widget gives RuntimeError
     from django.contrib.auth.forms import ReadOnlyPasswordHashWidget
 except RuntimeError:
     ReadOnlyPasswordHashWidget = None
@@ -277,15 +277,15 @@ class FieldRenderer(BaseRenderer):
         classes = widget.attrs.get("class", "")
         if ReadOnlyPasswordHashWidget is not None and isinstance(widget, ReadOnlyPasswordHashWidget):
             # Render this is a static control
-            classes = merge_css_classes(classes, "form-control-static", prepend=True)
+            classes = merge_css_classes("form-control-static", classes)
         elif not isinstance(widget, self.WIDGETS_NO_FORM_CONTROL):
-            classes = merge_css_classes(classes, "form-control", prepend=True)
+            classes = merge_css_classes("form-control", classes)
             # For these widget types, add the size class here
             classes = merge_css_classes(classes, self.get_size_class())
         elif isinstance(widget, CheckboxInput):
-            classes = merge_css_classes(classes, "form-check-input", prepend=True)
+            classes = merge_css_classes("form-check-input", classes)
         elif isinstance(widget, FileInput):
-            classes = merge_css_classes(classes, "form-control-file", prepend=True)
+            classes = merge_css_classes("form-control-file", classes)
 
         if self.field.errors:
             if self.error_css_class:

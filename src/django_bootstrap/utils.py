@@ -2,15 +2,10 @@ import re
 from collections.abc import Mapping
 from urllib.parse import parse_qs, urlparse, urlunparse
 
-from django.forms.utils import flatatt
 from django.template.base import FilterExpression, TemplateSyntaxError, Variable, VariableDoesNotExist, kwarg_re
 from django.template.loader import get_template
 from django.utils.encoding import force_str
-from django.utils.html import format_html
 from django.utils.http import urlencode
-from django.utils.safestring import mark_safe
-
-from .text import text_value
 
 # RegEx for quoted string
 QUOTED_STRING = re.compile(r'^["\'](?P<noquotes>.+)["\']$')
@@ -56,31 +51,6 @@ def parse_token_contents(parser, token):
     return {"tag": tag, "args": args, "kwargs": kwargs, "asvar": asvar}
 
 
-def render_script_tag(url):
-    """Build a script tag."""
-    url_dict = sanitize_url_dict(url)
-    url_dict.setdefault("src", url_dict.pop("url", None))
-    return render_tag("script", url_dict)
-
-
-def render_link_tag(url, rel="stylesheet", media=None):
-    """Build a link tag."""
-    url_dict = sanitize_url_dict(url, url_attr="href")
-    url_dict.setdefault("href", url_dict.pop("url", None))
-    url_dict["rel"] = rel
-    if media:
-        url_dict["media"] = media
-    return render_tag("link", attrs=url_dict, close=False)
-
-
-def render_tag(tag, attrs=None, content=None, close=True):
-    """Render a HTML tag."""
-    builder = "<{tag}{attrs}>{content}"
-    if content or close:
-        builder += "</{tag}>"
-    return format_html(builder, tag=tag, attrs=mark_safe(flatatt(attrs)) if attrs else "", content=text_value(content))
-
-
 def render_template_file(template, context=None):
     """Render a Template to unicode."""
     assert isinstance(context, Mapping)
@@ -89,32 +59,29 @@ def render_template_file(template, context=None):
 
 
 def url_replace_param(url, name, value):
-    """Replace a GET parameter in an URL."""
+    """Replace a GET parameter in a URL."""
     url_components = urlparse(force_str(url))
 
     params = parse_qs(url_components.query)
 
+    params[name] = value
     if value is None:
         del params[name]
-    else:
-        params[name] = value
 
-    return mark_safe(
-        urlunparse(
-            [
-                url_components.scheme,
-                url_components.netloc,
-                url_components.path,
-                url_components.params,
-                urlencode(params, doseq=True),
-                url_components.fragment,
-            ]
-        )
+    return urlunparse(
+        [
+            url_components.scheme,
+            url_components.netloc,
+            url_components.path,
+            url_components.params,
+            urlencode(params, doseq=True),
+            url_components.fragment,
+        ]
     )
 
 
-def sanitize_url_dict(url, url_attr="src"):
-    """Sanitize url dict as used in django-django_bootstrap settings."""
+def get_url_attrs(url, url_attr):
+    """Return dict with attrs for url."""
     if isinstance(url, str):
         return {url_attr: url}
     return url.copy()
