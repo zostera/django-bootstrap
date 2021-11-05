@@ -1,4 +1,4 @@
-SECRET_KEY = "Thanks for using django-django_bootstrap!"
+SECRET_KEY = "Thanks for using django-bootstrap!"
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
 

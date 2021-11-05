@@ -24,7 +24,7 @@ The full documentation is at https://django-bootstrap4.readthedocs.io/
 1. Install using pip:
 
     ```shell script
-    pip install django-django_bootstrap
+    pip install django-bootstrap
     ```
    
    Alternatively, you can install download or clone this repo and call ``pip install -e .``.
