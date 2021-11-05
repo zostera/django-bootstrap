@@ -31,7 +31,6 @@ jobs:
         run: tox -e lint
 
   tests_matrix:
-    needs: lint
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
@@ -70,10 +69,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: coveralls --service=github
 
-  tests_pass:
+  tests:
       if: ${{ always() }}
       runs-on: ubuntu-latest
-      name: Tests pass
       needs: tests_matrix
       steps:
         - name: Check test matrix status
@@ -81,7 +79,7 @@ jobs:
           run: exit 1
 
   coveralls:
-    needs: tests_pass
+    needs: tests
     runs-on: ubuntu-latest
 
     steps:
